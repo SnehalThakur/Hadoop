@@ -1,0 +1,150 @@
+Hadoop HDFS Basic Commands
+
+* Hadoop is write once read many access
+* Modification of file is not possible in HDFS
+
+
+To know Hadoop version
+     $ hdfs version
+ 
+ 
+ To know the running processes (Java Processes)
+     $ jps
+ 
+ 
+To list the blocks FSCK(File System Checksum)
+   Syntax: hdfs fsck -blocks <HDFSFilePath>
+   
+    $ hdfs fsck -blocks /user/sampleInput/input.log
+
+
+To list the files and directories in the directory
+  Syntax: hdfs dfs -ls <dirname>
+  
+    $ hdfs dfs -ls /
+    
+    
+To show  all the files and dirs and also the files and dirs are present in sub dirs(recursive)
+  Syntax: hdfs dfs -ls -R <dirname>
+  
+    $ hdfs dfs -ls -R /
+    
+
+To create directory in HDFS
+  Syntax: hdfs dfs -mkdir <dirname>
+  
+    $hdfs dfs -mkdir /user/sampleInput
+
+
+To copy all file from LFS (local path) to HDFS (Hadoop path)
+  Syntax: hdfs dfs -put <LFSsourcepath> <HDFSdestpath>
+  Syntax: hdfs dfs -copyFromLocal <LFSsourcepath> <HDFSdestpath>
+    
+     $ hdfs dfs -put /home/hduser/* /user/sampleInput
+                               OR
+     $ hdfs dfs -copyFromLocal /home/hduser/* /user/sampleInput
+
+To check the content of the file
+  Syntax: hdfs dfs -cat <filename>
+  
+    $ hdfs dfs -cat /user/sampleInput/input.log
+    
+
+To copy the file from HDFS (Hadoop path) to LFS (local path)  
+  Syntax: hadoop fs -get <HDFSsourcepath> <LFSdestpath>
+  Syntax: hadoop fs -copyToLocal <HDFSsourcepath> <LFSdestpath>
+  
+     $ hdfs dfs -get /user/sampleInput/input.log /home/hduser/ 
+                               OR
+     $ hdfs dfs -copyToLocal /user/sampleInput/input.log /home/hduser/ 
+     
+To remove (delete) the file     
+  Syntax: hdfs dfs -rm <filename> 
+  
+    $ hdfs dfs -rm /user/sampleInput/input.log
+
+
+To remove (delete) the directory with the files
+  Syntax: hdfs dfs -rm -r <dirname>
+
+    $ hdfs dfs -rm -r /user/sampleInput
+
+
+To rename the file in HDFS
+  Syntax: hdfs dfs -mv <HDFSsrcpath> <HDFSdestpath> 
+
+    $ hdfs dfs -mv /user/sampleInput/input.log /user/sampleInput/SampleInput.log
+
+
+To move the file from one hdfs directory to another hdfs directory
+  Syntax: hdfs dfs -mv <HDFSsrcpath> <HDFSdestpath> 
+
+    $ hdfs dfs -mv /user/sampleInput/input.log /user/InpurDir
+  
+Here "-mv" command is used for both the purpose, to rename the file and to move the file from one hdfs directory to another hdfs directory
+
+
+To know the number of lines, words and characters
+
+    $ hdfs dfs -cat /user/sampleInput/SampleInput.log|wc
+
+
+To know the number of lines
+
+    $ hdfs dfs -cat /user/sampleInput/SampleInput.log|wc -l
+
+
+To know the number of words
+
+    $ hdfs dfs -cat /user/sampleInput/SampleInput.log|wc -w 
+
+
+To know the number of characters
+
+    $ hdfs dfs -cat /user/sampleInput/SampleInput.log|wc -c 
+
+
+To know the file creation info (Date and Time)
+
+    $ hdfs dfs -stat /user/sampleInput/SampleInput.log 
+    
+
+To know the file info like number of directories, files, space and storage location
+
+    $ hadoop fs -count /user/root/hdfsdir67/file.txt
+    
+    
+To know the disk usage(memory occupied)
+
+    $ hdfs dfs -du /user/sampleInput/SampleInput.log 
+
+
+To copy file in HDFS
+  Syntax: hdfs dfs -cp <HDFSsrcpath> <HDFSdestpath> 
+  
+    $ hdfs dfs -cp /user/sampleInput/input.log /user/InpurDir
+  
+  
+To set replication for single file or dir
+    Syntax: hdfs dfs -setrep -w 5 <filename>
+
+
+To move data from LFS(local path) to HDFS (hadoop path)
+    Syntax: hdfs dfs -moveFromLocal <LFSsrcpath> <HDFSdestpath> 
+    
+To move data from HDFS(hadoop path) to LFS(local)
+    Syntax: hdfs dfs -moveToLocal <HDFSsrcpath> <LFSdestpath> 
+
+To create empty file 
+    Syntax: hdfs dfs -touchz <filename>  
+    
+To change group name for particular file or dir
+    Syntax: hdfs dfs -chgrp <newgroupname> <filename> 
+    
+To change owner name for particular file or dir
+    Syntax: hdfs dfs -chown <newownername> <filename>
+    
+To change file permissions
+    Syntax: hdfs dfs -chmod 7777 <filename>
+
+* In HDFS we will get only 666 permissions instead of 777 because of write once nature
