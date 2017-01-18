@@ -51,8 +51,8 @@ To check the content of the file
     
 
 To copy the file from HDFS (Hadoop path) to LFS (local path)  
-  Syntax: hadoop fs -get <HDFSsourcepath> <LFSdestpath>
-  Syntax: hadoop fs -copyToLocal <HDFSsourcepath> <LFSdestpath>
+  Syntax: hdfs fs -get <HDFSsourcepath> <LFSdestpath>
+  Syntax: hdfs fs -copyToLocal <HDFSsourcepath> <LFSdestpath>
   
      $ hdfs dfs -get /user/sampleInput/input.log /home/hduser/ 
                                OR
