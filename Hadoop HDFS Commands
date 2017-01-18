@@ -18,7 +18,7 @@ To list the blocks FSCK(File System Checksum)
     $ hdfs fsck -blocks /user/sampleInput/input.log
 
 
-To list the files and directories in the directory
+To list the files and directories in the HDFS directory
   Syntax: hdfs dfs -ls <dirname>
   
     $ hdfs dfs -ls /
